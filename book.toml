@@ -4,3 +4,9 @@ language = "en"
 multilingual = false
 src = "src"
 title = "arcdps clears User Guide"
+
+[output.html]
+git-repository-url = "https://github.com/gw2scratch/arcdps-clears-guide"
+git-repository-icon = "fa-github"
+edit-url-template = "https://github.com/gw2scratch/arcdps-clears-guide/edit/master/{path}"
+site-url = "/arcdps-clears-guide/"
