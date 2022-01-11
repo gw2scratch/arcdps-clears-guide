@@ -13,7 +13,7 @@
 
 # Friends
 - [How to use Friends]()
-- [Privacy]()
+- [Privacy](./friends/privacy.md)
 
 # Customization
 - [Clear styles]()
