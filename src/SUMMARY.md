@@ -12,7 +12,7 @@
 	- [Key codes](./guide/key-codes.md)
 
 # Friends
-- [How to use Friends]()
+- [How to use Friends](./friends/how-to.md)
 - [Privacy](./friends/privacy.md)
 
 # Customization
