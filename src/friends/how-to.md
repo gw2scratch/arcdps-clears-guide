@@ -37,9 +37,9 @@ select it. If you keep it empty, your clears will be private.
 
 ## Reordering, hiding, and removing friends
 The `Friends` button in the `Friends` tab opens a list of friends, where you may:
-- reorder friends by using the arrows in the first column
-- hide friends by toggling the checkbox in the `Shown column`
-- remove friends by clicking the `Remove` button
+- reorder friends by using the arrows in the first column,
+- hide friends by toggling the checkbox in the `Shown column`,
+- remove friends by clicking the `Remove` button.
 
 The last column may show special notes about the friends. The most notable note
 is `not known`, which indicates that the account name is unknown, or the owner
@@ -47,5 +47,5 @@ of the account hasn't shared their clears with you.
 
 ## Styling
 The `Friends` tab has separate style settings from the `My clears` tab. It
-default to the single-line table layout as there may be many friends. As with
+defaults to the single-line table layout as there may be many friends. As with
 `My clears`, you can right-click the window to edit the style settings.
