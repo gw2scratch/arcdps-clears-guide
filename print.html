@@ -1,0 +1,539 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>arcdps clears User Guide</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="guide/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="guide/api-keys.html"><strong aria-hidden="true">2.</strong> Adding API keys</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="guide/api-key-creation.html"><strong aria-hidden="true">2.1.</strong> Creating an API key</a></li><li class="chapter-item expanded "><a href="guide/api-key-adding.html"><strong aria-hidden="true">2.2.</strong> Adding an API key</a></li></ol></li><li class="chapter-item expanded "><a href="guide/clears.html"><strong aria-hidden="true">3.</strong> Checking your clears</a></li><li class="chapter-item expanded "><a href="guide/keybinds.html"><strong aria-hidden="true">4.</strong> Keybinds</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="guide/key-codes.html"><strong aria-hidden="true">4.1.</strong> Key codes</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Friends</li><li class="chapter-item expanded "><a href="friends/how-to.html"><strong aria-hidden="true">5.</strong> How to use Friends</a></li><li class="chapter-item expanded "><a href="friends/privacy.html"><strong aria-hidden="true">6.</strong> Privacy</a></li><li class="chapter-item expanded affix "><li class="part-title">Customization</li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Clear styles</div></li><li class="chapter-item expanded affix "><li class="part-title">Internals</li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Settings file</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> Logs</div></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">arcdps clears User Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/gw2scratch/arcdps-clears-guide" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p><strong>arcdps clears</strong> is an addon for arcdps that shows raid clears within the game.</p>
+<p>This guide shows how to install and use the addon.</p>
+<p><img src="./img/clears-my-clears.png" alt="clears" /></p>
+<h2 id="webpage"><a class="header" href="#webpage">Webpage</a></h2>
+<p>The addon has a <a href="https://gw2scratch.com/tools/arcdps-clears">webpage</a>, where you may also download it.</p>
+<h2 id="contributing"><a class="header" href="#contributing">Contributing</a></h2>
+<p>The source code is available on GitHub: <a href="https://github.com/gw2scratch/arcdps-clears-guide/">this guide</a>, <a href="https://github.com/gw2scratch/arcdps-clears/">arcdps clears</a>. You may also report issues and feature requests there in the respective repositories. Pull requests are also welcome.</p>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<p>Both this guide and arcdps clears is licensed under the MIT license.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
+<p>You may need to install the latest Visual C++ redistributable (<a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">download from Microsoft</a>, <a href="https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist">article</a>).</p>
+<h2 id="manual-installation-dll-files"><a class="header" href="#manual-installation-dll-files">Manual installation (dll files)</a></h2>
+<p>arcdps clears is an addon for <a href="https://www.deltaconnected.com/arcdps/">arcdps</a>,
+and as such, requires arcdps to run. This guide assumes that you already have
+arcdps installed.</p>
+<ol start="0">
+<li>Install arcdps.</li>
+<li><a href="https://gw2scratch.com/tools/arcdps-clears">Download</a> the latest version of the clears addon.</li>
+<li>Place <code>arcdps_clears.dll</code> into <code>Guild Wars 2/bin64</code> (should be the same directory as other arcdps addons).</li>
+</ol>
+<h2 id="using-the-mod-manager-uoaom"><a class="header" href="#using-the-mod-manager-uoaom">Using the Mod Manager (UOAOM)</a></h2>
+<ol start="0">
+<li>Get the Unofficial Addon Manager (<a href="https://github.com/gw2-addon-loader/GW2-Addon-Manager/wiki">installation guide</a>).</li>
+<li>Run the Addon Manager.</li>
+<li>Select both arcdps and arcdps clears.</li>
+<li>Install.</li>
+</ol>
+<h2 id="verifying-the-installation"><a class="header" href="#verifying-the-installation">Verifying the installation</a></h2>
+<p>If everything worked correctly, you should be able to see the <code>Clears</code> window in the arcdps settings. The default key combination to open these settings is <code>Shift+Alt+T</code>.</p>
+<p><img src="guide/../img/window-option.png" alt="Window option" /></p>
+<p>You can also check the exact version that is loaded in the <code>About</code> tab:</p>
+<p><img src="guide/../img/about-version.png" alt="Window option" /></p>
+<h2 id="next-step"><a class="header" href="#next-step">Next step</a></h2>
+<p>To get started with the addon, read <a href="guide/./api-keys.html">Adding an API key</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="adding-api-keys"><a class="header" href="#adding-api-keys">Adding API keys</a></h1>
+<p>To show your clears, the addon needs an API key to access clear data from the
+official Guild Wars 2 API.</p>
+<p>Required permissions:</p>
+<ul>
+<li><code>account</code>,</li>
+<li><code>progression</code>.</li>
+</ul>
+<p>You should create a <strong>new</strong> API key. Do not reuse a key from
+another application. Really, do create a new one.</p>
+<ul>
+<li><strong><a href="guide/./api-key-creation.html">Creating an API key</a></strong> describes how to create an API key.</li>
+<li><strong><a href="guide/./api-key-adding.html">Adding an API key</a></strong> describes how to add it to the addon.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="creating-an-api-key"><a class="header" href="#creating-an-api-key">Creating an API key</a></h1>
+<p>In this step, you should create a <strong>new</strong> API key. Do not reuse a key from
+another application. Really, do create a new one.</p>
+<ol>
+<li>Go to <a href="https://account.arena.net/applications">https://account.arena.net/applications</a> and log in.</li>
+<li>Create a <strong>new</strong> API key with the progression permission:</li>
+</ol>
+<p><img src="guide/../img/anet-new-key.png" alt="Creating a new API key" /></p>
+<hr />
+<p><img src="guide/../img/anet-permissions.png" alt="Creating a new API key and choosing permissions" /></p>
+<ol start="3">
+<li>Copy the new key into your clipboard by using the copy icon:</li>
+</ol>
+<p><img src="guide/../img/api-key-copy.png" alt="Copying the new API key" /></p>
+<h2 id="next-step-1"><a class="header" href="#next-step-1">Next step</a></h2>
+<p>Now that you have a new API key, you can <a href="guide/./api-key-adding.html">add it to the addon</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="adding-an-api-key"><a class="header" href="#adding-an-api-key">Adding an API key</a></h1>
+<h2 id="opening-the-clears-window"><a class="header" href="#opening-the-clears-window">Opening the Clears window</a></h2>
+<p>To get started, open the Clears window. Open the arcdps settings (<code>Shift+Alt+T</code>
+by default) and click the checkbox to open the Clears window.</p>
+<p>Alternatively, you can use the <a href="guide/./keybinds.html">keybind</a> to open the window (<code>Shift+Alt+C</code> by default).</p>
+<p><img src="guide/../img/window-option.png" alt="Clears window in arcdps settings" /></p>
+<h2 id="the-clears-window"><a class="header" href="#the-clears-window">The Clears window</a></h2>
+<p><img src="guide/../img/intro-window.png" alt="My Clears as it appears without API keys" /></p>
+<p>The clears window should now appear and prompt you to add an API key. To
+continue, click the settings button to open the API key settings.</p>
+<p>You can also access the API key settings by going to the <code>Settings</code> tab and
+clicking the <code>Manage GW2 API keys</code> button.</p>
+<h2 id="the-api-key-management-window"><a class="header" href="#the-api-key-management-window">The API key management window</a></h2>
+<p>The API key management window will look like this when there are no API keys added yet:</p>
+<p><img src="guide/../img/api-keys-empty.png" alt="API key management as it appears without API keys" /></p>
+<p>To continue, click the <code>Add new key</code> button.</p>
+<p><img src="guide/../img/api-keys-new-key.png" alt="API key management as it appears without API keys" /></p>
+<h2 id="adding-the-api-key"><a class="header" href="#adding-the-api-key">Adding the API key</a></h2>
+<ol>
+<li>Copy your <a href="guide/./api-key-creation.html"><strong>new</strong> key</a> into your clipboard by using the copy icon:</li>
+</ol>
+<p><img src="guide/../img/api-key-copy.png" alt="Copying the new API key" /></p>
+<ol start="2">
+<li>Paste the key into the <code>GW2 API Key</code> textbox:</li>
+</ol>
+<p><img src="guide/../img/api-key-paste.png" alt="Pasting the new API key" /></p>
+<ol start="3">
+<li>Click the <code>Check API key</code> button.</li>
+</ol>
+<p>If everything went right, the window should now list your account name:</p>
+<p><img src="guide/../img/key-added.png" alt="Key added" /></p>
+<p>If there were any issues, the window will tell you what went wrong.</p>
+<h2 id="adding-more-keys"><a class="header" href="#adding-more-keys">Adding more keys</a></h2>
+<p>If you have multiple accounts, you can add multiple keys here. If you want to
+see clears of your friends, check out <a href="guide/../friends/how-to.html">Friends</a> instead.</p>
+<h2 id="next-step-2"><a class="header" href="#next-step-2">Next step</a></h2>
+<p>Now that your API key is added, you may <a href="guide/./clears.html">check your clears</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="checking-your-clears"><a class="header" href="#checking-your-clears">Checking your clears</a></h1>
+<h2 id="opening-the-clears-window-1"><a class="header" href="#opening-the-clears-window-1">Opening the Clears window</a></h2>
+<p>To see your raid clears, open the Clears window. There are multiple ways how to do it:</p>
+<ul>
+<li>Use the <a href="guide/./keybinds.html">keybind</a> to open the window (<code>Shift+Alt+C</code> by default).</li>
+<li>Open the arcdps settings (<code>Shift+Alt+T</code> by default) and click the checkbox to open the Clears window:</li>
+</ul>
+<p><img src="guide/../img/window-option.png" alt="Clears window in arcdps settings" /></p>
+<h2 id="the-clears-window-1"><a class="header" href="#the-clears-window-1">The clears window</a></h2>
+<p>The clears window has multiple tabs: <a href="guide/clears.html#my-clears">My clears</a>, <a href="guide/clears.html#friends">Friends</a>, <a href="guide/clears.html#settings">Settings</a>.</p>
+<p><img src="guide/../img/clears-my-clears.png" alt="Clears window in arcdps settings" /></p>
+<h3 id="my-clears"><a class="header" href="#my-clears">My clears</a></h3>
+<p>This tab shows raid clears of all your accounts. You may add multiple API keys
+if you have multiple accounts, and they will all be shown here.  By default,
+finished encounters are shown in green and unfinished encounters are shown in
+red.</p>
+<p>There are many <a href="guide/../customization/style.html">customization options</a>, including:</p>
+<ul>
+<li>3 different table styles,</li>
+<li>the account name may be hidden,</li>
+<li>wing and boss numbers may be hidden,</li>
+<li>colors may be changed.</li>
+</ul>
+<p>Clears may take a few minutes to update after encounters are finished. This is caused
+by delays in the official GW2 API.</p>
+<h4 id="choosing-shown-accounts"><a class="header" href="#choosing-shown-accounts">Choosing shown accounts</a></h4>
+<p>If you have multiple accounts added, you may choose which of them should be
+shown and which should be hidden. This may be done in the API key management
+window, or by right-clicking the window and checking the corresponding checkboxes
+in <code>Shown accounts</code>.</p>
+<h3 id="friends"><a class="header" href="#friends">Friends</a></h3>
+<p>This tab shows raid clears of friends you add in the addon. For more details, read <a href="guide/../friends/how-to.html">friends</a>.</p>
+<p>This tab has separate style settings from <code>My clears</code>.</p>
+<h3 id="settings"><a class="header" href="#settings">Settings</a></h3>
+<p>This tab contains all settings for the addon. Alternatively, the very same
+settings may also be accessed in the <code>Extensions</code> tab in arcdps settings.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="keybinds"><a class="header" href="#keybinds">Keybinds</a></h1>
+<p>The addon provides keybinds that make it easier to open its windows.
+The used modifiers are the same as for arcdps (Shift+Alt by default).</p>
+<p>The keybinds are:</p>
+<ul>
+<li>open Clears window (Shift+Alt+C by default)</li>
+<li>open API keys window (disabled by default)</li>
+</ul>
+<h2 id="changing-keybinds"><a class="header" href="#changing-keybinds">Changing keybinds</a></h2>
+<p>To change keybinds, go to the addon settings. The keybinds are located in the
+<code>Keyboard shortcuts</code> collapsible section.</p>
+<p>The keybinds use <a href="guide/./key-codes.html">virtual key codes</a>. If you input a number, you can also see the
+corresponding key name to the right of the textbox. These names may be affected
+by your keyboard layout, you may need to do a bit of experimentation.</p>
+<p>Common key codes are listed <a href="guide/./key-codes.html">here</a>.</p>
+<p><img src="guide/../img/keybinds.png" alt="Keybind settings" /></p>
+<h2 id="default-area-stats-keybind-in-arcdps-c"><a class="header" href="#default-area-stats-keybind-in-arcdps-c">Default area stats keybind in arcdps (C)</a></h2>
+<p>The C keybind has a collision with arcdps itself; it uses Shift+Alt+C to open
+the area stats window by default. This keybind is seldom used and C makes
+perfect sense for clears. If you desire to restore the original keybind for
+arcdps, change the keybind in clears as it has priority.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="key-codes"><a class="header" href="#key-codes">Key codes</a></h1>
+<p>This is a list of common key code values that may be used for keybinds, along with names of keys they correspond to.
+Keep in mind that these may be affected by the keyboard layout; you may need to do a bit of experimentation.</p>
+<p>The values are Windows virtual-key codes defined in <code>Winuser.h</code>.</p>
+<h2 id="key-code-table"><a class="header" href="#key-code-table">Key code table</a></h2>
+<table><thead><tr><th>Key name</th><th>Code</th></tr></thead><tbody>
+<tr><td>BACKSPACE</td><td>8</td></tr>
+<tr><td>TAB</td><td>9</td></tr>
+<tr><td>CLEAR</td><td>12</td></tr>
+<tr><td>ENTER</td><td>13</td></tr>
+<tr><td>PAUSE</td><td>19</td></tr>
+<tr><td>CAPS LOCK</td><td>20</td></tr>
+<tr><td>ESCAPE</td><td>27</td></tr>
+<tr><td>SPACEBAR</td><td>32</td></tr>
+<tr><td>PAGE UP</td><td>33</td></tr>
+<tr><td>PAGE DOWN</td><td>34</td></tr>
+<tr><td>END</td><td>35</td></tr>
+<tr><td>HOME</td><td>36</td></tr>
+<tr><td>LEFT ARROW</td><td>37</td></tr>
+<tr><td>UP ARROW</td><td>38</td></tr>
+<tr><td>RIGHT ARROw</td><td>39</td></tr>
+<tr><td>DOWN ARROW</td><td>40</td></tr>
+<tr><td>0</td><td>48</td></tr>
+<tr><td>1</td><td>49</td></tr>
+<tr><td>2</td><td>50</td></tr>
+<tr><td>3</td><td>51</td></tr>
+<tr><td>4</td><td>52</td></tr>
+<tr><td>5</td><td>53</td></tr>
+<tr><td>6</td><td>54</td></tr>
+<tr><td>7</td><td>55</td></tr>
+<tr><td>8</td><td>56</td></tr>
+<tr><td>9</td><td>57</td></tr>
+<tr><td>A</td><td>65</td></tr>
+<tr><td>B</td><td>66</td></tr>
+<tr><td>C</td><td>67</td></tr>
+<tr><td>D</td><td>68</td></tr>
+<tr><td>E</td><td>69</td></tr>
+<tr><td>F</td><td>70</td></tr>
+<tr><td>G</td><td>71</td></tr>
+<tr><td>H</td><td>72</td></tr>
+<tr><td>I</td><td>73</td></tr>
+<tr><td>J</td><td>74</td></tr>
+<tr><td>K</td><td>75</td></tr>
+<tr><td>L</td><td>76</td></tr>
+<tr><td>M</td><td>77</td></tr>
+<tr><td>N</td><td>78</td></tr>
+<tr><td>O</td><td>79</td></tr>
+<tr><td>P</td><td>80</td></tr>
+<tr><td>Q</td><td>81</td></tr>
+<tr><td>R</td><td>82</td></tr>
+<tr><td>S</td><td>83</td></tr>
+<tr><td>T</td><td>84</td></tr>
+<tr><td>U</td><td>85</td></tr>
+<tr><td>V</td><td>86</td></tr>
+<tr><td>W</td><td>87</td></tr>
+<tr><td>X</td><td>88</td></tr>
+<tr><td>Y</td><td>89</td></tr>
+<tr><td>Z</td><td>90</td></tr>
+<tr><td>SLEEP</td><td>95</td></tr>
+<tr><td>NUMPAD0</td><td>96</td></tr>
+<tr><td>NUMPAD1</td><td>97</td></tr>
+<tr><td>NUMPAD2</td><td>98</td></tr>
+<tr><td>NUMPAD3</td><td>99</td></tr>
+<tr><td>NUMPAD4</td><td>100</td></tr>
+<tr><td>NUMPAD5</td><td>101</td></tr>
+<tr><td>NUMPAD6</td><td>102</td></tr>
+<tr><td>NUMPAD7</td><td>103</td></tr>
+<tr><td>NUMPAD8</td><td>104</td></tr>
+<tr><td>NUMPAD9</td><td>105</td></tr>
+<tr><td>MULTIPLY</td><td>106</td></tr>
+<tr><td>ADD</td><td>107</td></tr>
+<tr><td>SEPARATOR</td><td>108</td></tr>
+<tr><td>SUBTRACT</td><td>109</td></tr>
+<tr><td>DECIMAL</td><td>110</td></tr>
+<tr><td>DIVIDE</td><td>111</td></tr>
+<tr><td>F1</td><td>112</td></tr>
+<tr><td>F2</td><td>113</td></tr>
+<tr><td>F3</td><td>114</td></tr>
+<tr><td>F4</td><td>115</td></tr>
+<tr><td>F5</td><td>116</td></tr>
+<tr><td>F6</td><td>117</td></tr>
+<tr><td>F7</td><td>118</td></tr>
+<tr><td>F8</td><td>119</td></tr>
+<tr><td>F9</td><td>120</td></tr>
+<tr><td>F10</td><td>121</td></tr>
+<tr><td>F11</td><td>122</td></tr>
+<tr><td>F12</td><td>123</td></tr>
+<tr><td>F13</td><td>124</td></tr>
+<tr><td>F14</td><td>125</td></tr>
+<tr><td>F15</td><td>126</td></tr>
+<tr><td>F16</td><td>127</td></tr>
+<tr><td>F17</td><td>128</td></tr>
+<tr><td>F18</td><td>129</td></tr>
+<tr><td>F19</td><td>130</td></tr>
+<tr><td>F20</td><td>131</td></tr>
+<tr><td>F21</td><td>132</td></tr>
+<tr><td>F22</td><td>133</td></tr>
+<tr><td>F23</td><td>134</td></tr>
+<tr><td>F24</td><td>135</td></tr>
+<tr><td>;</td><td>186</td></tr>
+<tr><td>=</td><td>187</td></tr>
+<tr><td>,</td><td>188</td></tr>
+<tr><td>-</td><td>189</td></tr>
+<tr><td>.</td><td>190</td></tr>
+<tr><td>/</td><td>191</td></tr>
+<tr><td>`</td><td>192</td></tr>
+<tr><td>[</td><td>219</td></tr>
+<tr><td>\</td><td>220</td></tr>
+<tr><td>]</td><td>221</td></tr>
+<tr><td>'</td><td>222</td></tr>
+<tr><td>&lt;</td><td>226</td></tr>
+</tbody></table>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="how-to-use-friends"><a class="header" href="#how-to-use-friends">How to use Friends</a></h1>
+<p>The Friends tab allows you to see clears of other players who also use <em>arcdps clears</em>.</p>
+<p>To get started, go to the <code>Friends</code> tab and click <code>Enable Friends</code>. This will submit
+subtokens to the friends server (you can check which of your API data is
+shared on the <a href="friends/./privacy.html">privacy</a> page).</p>
+<h2 id="adding-friends"><a class="header" href="#adding-friends">Adding friends</a></h2>
+<p>First, to add a friend, your friend must make their clears accessible to you.
+This can be done by setting their clears to public, or by adding you as a friend.</p>
+<p>The <code>Friends</code> tab has a button that opens the friend list, where you may add
+a friend by typing their account name. A new row will be added to the friend
+list. In case the last column shows <code>not known</code>, they are either not using
+<em>arcdps clears</em>, or they have not shared their clears with you. Make sure you
+haven't made any typos in their name, and don't forget the number part of their
+name.</p>
+<p><em>In case there is no number part in an account name (this is very rare), try
+adding .0000 to their name.</em></p>
+<h2 id="sharing-your-clears"><a class="header" href="#sharing-your-clears">Sharing your clears</a></h2>
+<p>You can configure how your clears are shared for each API key in the GW2 API
+key management window.</p>
+<p>You can open the management window by clicking the <code>Share clears</code> button in the
+<code>Friends</code> tab or you can use the <code>Manage GW2 API keys</code> button in the settings.</p>
+<p>After selecting an API key in the management window, you can change the
+settings in the <code>Friends</code> tab in the right pane.
+There are three subtoken sharing settings:</p>
+<ul>
+<li><em>Everyone</em> – anyone may request your clear data (everyone is your friend),</li>
+<li><em>Friends only</em> – only players you select get access to your clear data,</li>
+<li><em>Do not share</em> – nobody has access to your clear data.</li>
+</ul>
+<h2 id="reordering-hiding-and-removing-friends"><a class="header" href="#reordering-hiding-and-removing-friends">Reordering, hiding, and removing friends</a></h2>
+<p>The <code>Friends</code> button in the <code>Friends</code> tab opens a list of friends, where you may:</p>
+<ul>
+<li>reorder friends by using the arrows in the first column,</li>
+<li>hide friends by toggling the checkbox in the <code>Shown column</code>,</li>
+<li>remove friends by clicking the <code>Remove</code> button.</li>
+</ul>
+<p>The last column may show special notes about the friends. The most notable note
+is <code>not known</code>, which indicates that the account name is unknown, or the owner
+of the account hasn't shared their clears with you.</p>
+<h2 id="styling"><a class="header" href="#styling">Styling</a></h2>
+<p>The <code>Friends</code> tab has separate style settings from the <code>My clears</code> tab. It
+defaults to the single-line table layout as there may be many friends. As with
+<code>My clears</code>, you can right-click the window to edit the style settings.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="friends-privacy"><a class="header" href="#friends-privacy">Friends Privacy</a></h1>
+<h2 id="tldr"><a class="header" href="#tldr">TL;DR</a></h2>
+<ul>
+<li><strong>Your friends</strong> get a daily subtoken with restricted access to clear data
+and masteries (<a href="friends/privacy.html#why-the-masteries">why masteries?</a>). If you revoke their
+access, they will lose access within one day.</li>
+<li>The <strong>friends server</strong> also knows a few extras that might be added in the future
+(dungeons, worldbosses and achievements), your account name, and some extra
+<a href="https://wiki.guildwars2.com/wiki/API:2/account">account data</a> that is not
+used.</li>
+</ul>
+<p>There are three subtoken sharing settings:</p>
+<ul>
+<li><em>Everyone</em> – anyone may request a subtoken with your clear data (everyone is your friend),</li>
+<li><em>Friends only</em> – only players you select get access to your clear data,</li>
+<li><em>Do not share</em> – nobody gets access to your clear data.</li>
+</ul>
+<h2 id="detailed-description"><a class="header" href="#detailed-description">Detailed description</a></h2>
+<p>Through the magic of <a href="https://wiki.guildwars2.com/wiki/API:2/createsubtoken">GW2 API
+subtokens</a>, the <strong>friends server</strong> has access to the following, and nothing else:</p>
+<ul>
+<li><code>/v2/tokeninfo</code> – used to verify token validity,</li>
+<li><code>/v2/account</code> – used to access account name, this is never shared further to avoid impersonation,</li>
+<li><code>/v2/account/masteries</code> – used to access the <code>last_modified</code> information with minimal information leaks about the account,</li>
+<li><code>/v2/account/raids</code> – used to access raid clear status,</li>
+<li><code>/v2/account/achievements</code> – may be used in the future to add features that require checking achievements,</li>
+<li><code>/v2/account/dungeons</code> – may be used in the future for dungeon clears,</li>
+<li><code>/v2/account/worldbosses</code> – may be used in the future for world boss clears (unlikely),</li>
+<li><code>/v2/createsubtoken</code> – used to further restrict information when sharing to friends.</li>
+</ul>
+<p><strong>Your friends</strong> get short-term subtokens of the server's subtoken and their access is limited to:</p>
+<ul>
+<li><code>/v2/account/raids</code> – raid clear data</li>
+<li><code>/v2/account/masteries</code> – used to get the time of the last account data update; this is needed to correctly handle raid clear resets</li>
+</ul>
+<p>Notably, the subtoken that is shared with friends does <em>not</em> give any access to
+the account name, so it cannot be used to impersonate you.</p>
+<p>The subtokens shared with your friends have an expiration of less than <strong>1
+day</strong> from creation. If you revoke their access to the data, they will not be
+get a new subtoken, which means they lose access within one day. This is
+required as the only other way to revoke access is to delete the entire API
+key.</p>
+<h2 id="why-the-masteries"><a class="header" href="#why-the-masteries">Why the masteries</a></h2>
+<p>The raid clear data in the GW2 API does <em>not</em> get updated if you are offline.
+If there was a raid reset since the last update, it will still say that you
+finished some encounters until you log in.</p>
+<p>For this reason, we need to know the last modification date of the clear data
+to properly show your clears. For that, we need to do a request to another
+endpoint. We chose the masteries endpoint because it reveals the least
+information of all the options. It doesn't allow for impersonation, as there is
+no account name available.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>

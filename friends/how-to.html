@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>How to use Friends - arcdps clears User Guide</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guide</li><li class="chapter-item expanded "><a href="../guide/installation.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../guide/api-keys.html"><strong aria-hidden="true">2.</strong> Adding API keys</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guide/api-key-creation.html"><strong aria-hidden="true">2.1.</strong> Creating an API key</a></li><li class="chapter-item expanded "><a href="../guide/api-key-adding.html"><strong aria-hidden="true">2.2.</strong> Adding an API key</a></li></ol></li><li class="chapter-item expanded "><a href="../guide/clears.html"><strong aria-hidden="true">3.</strong> Checking your clears</a></li><li class="chapter-item expanded "><a href="../guide/keybinds.html"><strong aria-hidden="true">4.</strong> Keybinds</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../guide/key-codes.html"><strong aria-hidden="true">4.1.</strong> Key codes</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Friends</li><li class="chapter-item expanded "><a href="../friends/how-to.html" class="active"><strong aria-hidden="true">5.</strong> How to use Friends</a></li><li class="chapter-item expanded "><a href="../friends/privacy.html"><strong aria-hidden="true">6.</strong> Privacy</a></li><li class="chapter-item expanded affix "><li class="part-title">Customization</li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Clear styles</div></li><li class="chapter-item expanded affix "><li class="part-title">Internals</li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Settings file</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> Logs</div></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">arcdps clears User Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/gw2scratch/arcdps-clears-guide" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/gw2scratch/arcdps-clears-guide/edit/master/src/friends/how-to.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="how-to-use-friends"><a class="header" href="#how-to-use-friends">How to use Friends</a></h1>
+<p>The Friends tab allows you to see clears of other players who also use <em>arcdps clears</em>.</p>
+<p>To get started, go to the <code>Friends</code> tab and click <code>Enable Friends</code>. This will submit
+subtokens to the friends server (you can check which of your API data is
+shared on the <a href="./privacy.html">privacy</a> page).</p>
+<h2 id="adding-friends"><a class="header" href="#adding-friends">Adding friends</a></h2>
+<p>First, to add a friend, your friend must make their clears accessible to you.
+This can be done by setting their clears to public, or by adding you as a friend.</p>
+<p>The <code>Friends</code> tab has a button that opens the friend list, where you may add
+a friend by typing their account name. A new row will be added to the friend
+list. In case the last column shows <code>not known</code>, they are either not using
+<em>arcdps clears</em>, or they have not shared their clears with you. Make sure you
+haven't made any typos in their name, and don't forget the number part of their
+name.</p>
+<p><em>In case there is no number part in an account name (this is very rare), try
+adding .0000 to their name.</em></p>
+<h2 id="sharing-your-clears"><a class="header" href="#sharing-your-clears">Sharing your clears</a></h2>
+<p>You can configure how your clears are shared for each API key in the GW2 API
+key management window.</p>
+<p>You can open the management window by clicking the <code>Share clears</code> button in the
+<code>Friends</code> tab or you can use the <code>Manage GW2 API keys</code> button in the settings.</p>
+<p>After selecting an API key in the management window, you can change the
+settings in the <code>Friends</code> tab in the right pane.
+There are three subtoken sharing settings:</p>
+<ul>
+<li><em>Everyone</em> – anyone may request your clear data (everyone is your friend),</li>
+<li><em>Friends only</em> – only players you select get access to your clear data,</li>
+<li><em>Do not share</em> – nobody has access to your clear data.</li>
+</ul>
+<h2 id="reordering-hiding-and-removing-friends"><a class="header" href="#reordering-hiding-and-removing-friends">Reordering, hiding, and removing friends</a></h2>
+<p>The <code>Friends</code> button in the <code>Friends</code> tab opens a list of friends, where you may:</p>
+<ul>
+<li>reorder friends by using the arrows in the first column,</li>
+<li>hide friends by toggling the checkbox in the <code>Shown column</code>,</li>
+<li>remove friends by clicking the <code>Remove</code> button.</li>
+</ul>
+<p>The last column may show special notes about the friends. The most notable note
+is <code>not known</code>, which indicates that the account name is unknown, or the owner
+of the account hasn't shared their clears with you.</p>
+<h2 id="styling"><a class="header" href="#styling">Styling</a></h2>
+<p>The <code>Friends</code> tab has separate style settings from the <code>My clears</code> tab. It
+defaults to the single-line table layout as there may be many friends. As with
+<code>My clears</code>, you can right-click the window to edit the style settings.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../guide/key-codes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../friends/privacy.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../guide/key-codes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../friends/privacy.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
