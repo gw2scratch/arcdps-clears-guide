@@ -1,15 +1,18 @@
 # Friends Privacy
 
 ## TL;DR
-- **Your friends** have access to your raid clears and your masteries ([why masteries?](#why-the-masteries)).
-- **Your friends** get a daily subtoken with restricted access to clear data. If you
-  revoke their access, they will lose access within one day.
+- **Your friends** get a daily subtoken with restricted access to clear data
+  and masteries ([why masteries?](#why-the-masteries)). If you revoke their
+  access, they will lose access within one day.
 - The **friends server** also knows a few extras that might be added in the future
-  (dungeons, worldbosses and achievements), your account name, and some extra [account data](https://wiki.guildwars2.com/wiki/API:2/account).
+  (dungeons, worldbosses and achievements), your account name, and some extra
+  [account data](https://wiki.guildwars2.com/wiki/API:2/account) that is not
+  used.
 
-There are two subtoken sharing settings:
+There are three subtoken sharing settings:
 - *Everyone* – anyone may request a subtoken with your clear data (everyone is your friend),
-- *Friends only* – only players you select get access to your clear data.
+- *Friends only* – only players you select get access to your clear data,
+- *Do not share* – nobody gets access to your clear data.
 
 ## Detailed description
 Through the magic of [GW2 API

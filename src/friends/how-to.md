@@ -28,12 +28,10 @@ You can open the management window by clicking the `Share clears` button in the
 
 After selecting an API key in the management window, you can change the
 settings in the `Friends` tab in the right pane.
-There are two subtoken sharing settings:
+There are three subtoken sharing settings:
 - *Everyone* – anyone may request your clear data (everyone is your friend),
-- *Friends only* – only players you select get access to your clear data.
-
-You can configure the list of friends for the *Friends only* option after you
-select it. If you keep it empty, your clears will be private.
+- *Friends only* – only players you select get access to your clear data,
+- *Do not share* – nobody has access to your clear data.
 
 ## Reordering, hiding, and removing friends
 The `Friends` button in the `Friends` tab opens a list of friends, where you may:
